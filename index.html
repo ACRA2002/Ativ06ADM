@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADM</title>
+</head>
+<body>
+    <script>
+        const dados = "nome:João Silva;email:joao.silva@ifce.edu.br;curso:Técnico em Informática;matricula:202312345";
+
+        let firstName = dados.indexOf("nome:") + "nome:".length;
+        let lastName = dados.indexOf(";", firstName);
+        let nome = dados.slice(firstName, lastName);
+        console.log("Nome Completo: " + nome); 
+
+        let posicaoEmail = dados.indexOf("email:");
+        console.log("Posição do e-mail: " + posicaoEmail);
+
+        let inicioEmail = posicaoEmail + "email:".length;
+        let fimEmail = dados.indexOf(";", inicioEmail);
+        let email = dados.slice(inicioEmail, fimEmail);
+        console.log("Possui domínio @ifce.edu.br: " + email.includes("@ifce.edu.br"));
+
+        let inicioMatricula = dados.indexOf("matricula:") + "matricula:".length;
+        let matricula = dados.slice(inicioMatricula);
+        console.log("Matrícula inicia com 2023: " + matricula.startsWith("2023"));
+
+        const atualizarCurso = (pessoa, novoCurso) => {
+            pessoa.curso = novoCurso;
+        }
+        const pessoa = { curso: "Técnico em Informática"};
+
+        console.log(`${pessoa.curso}`);
+        atualizarCurso(pessoa, "Informática para Internet ");
+        console.log(`${pessoa.curso} (Atualizado!)`);
+
+        let textoOriginal = "nome: João Silva; email: joao.silva@ifce.edu.br; curso: Técnico em Informática; matricula: 202312345";
+        let novoTextoGlobal = textoOriginal.replaceAll(":", "=");
+        console.log(novoTextoGlobal);
+
+        let novoDados = dados.replace("Técnico em Informática", "Informática para Internet");
+        let inicioCurso = novoDados.indexOf("curso:") + "curso:".length;
+        let fimCurso = novoDados.indexOf(";", inicioCurso);
+        let curso = novoDados.slice(inicioCurso, fimCurso);
+        console.log(`Olá, ${nome}! Seu e-mail institucional é ${email} e você está matriculado no curso de ${curso}.`);
+    </script>
+
+</body>
+</html>
